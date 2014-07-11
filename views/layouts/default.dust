@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{+title /}</title>
+		
+
+		{+headScripts /}	
+	</head>
+	<body>
+		{+body /}
+		{+scripts /}
+	</body>
+</html>

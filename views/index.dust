@@ -1,0 +1,7 @@
+{>"layouts/default" /}
+{<title}
+	Welcome to {title}
+{/title}
+{<body}
+	<p> Welcome to {title}.</p>
+{/body}
