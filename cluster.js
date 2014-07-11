@@ -1,9 +1,23 @@
 var cluster = require('cluster'),
 	os = require('os'),
+	npid = require('npid'),
+	fs = require('fs'),
+	pidFile = "/tmp/node-example.pid";
 	numWorkers = process.env.NODE_WORKERS || os.cpus().length+1 ;
 cluster.setupMaster({
   exec: 'app.js'
 });
+
+try {
+    var pid = npid.create(pidFile);
+    pid.removeOnExit();
+} catch (err) {
+    console.log(err);
+    fs.unlinkSync(pidFile);
+    process.exit(1);
+}
+
+
 // this is the master control process
 console.log("Control process running: PID=" + process.pid);
 
@@ -29,7 +43,6 @@ process.on("SIGUSR2", function() {
 
     var i = 0;
     var workers = Object.keys(cluster.workers);
-    console.log(workers.length);
     var f = function() {
         if (i == workers.length) return; 
 
