@@ -2,7 +2,7 @@ var cluster = require('cluster'),
 	os = require('os'),
 	npid = require('npid'),
 	fs = require('fs'),
-	pidFile = "/tmp/node-example.pid";
+	pidFile = "./node-example.pid";
 	numWorkers = process.env.NODE_WORKERS || os.cpus().length+1 ;
 cluster.setupMaster({
   exec: 'app.js'
